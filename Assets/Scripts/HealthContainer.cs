@@ -9,4 +9,18 @@ public class HealthContainer : MonoBehaviour
     {
         _health = _maxHealth;
     }
+
+    public void TakeDamage(float damage)
+    {
+        _health-= damage;
+        Destroyed();
+    }
+
+    private void Destroyed()
+    {
+        if (_health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

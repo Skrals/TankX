@@ -5,6 +5,7 @@ public class TankControl : MonoBehaviour
 {
     [SerializeField] private DynamicJoystick _dynamicJoystick;
     [SerializeField] private FireCoolDown _fireCoolDown;
+    [SerializeField] private FirePoint _firePoint;
 
     [SerializeField] private float _speed;
     [SerializeField] private float _rotationSpeed;
@@ -14,6 +15,7 @@ public class TankControl : MonoBehaviour
     private void Start()
     {
         _fireCoolDown = GetComponent<FireCoolDown>();
+        _firePoint = GetComponentInChildren<FirePoint>();
     }
 
     private void Update()
@@ -44,6 +46,7 @@ public class TankControl : MonoBehaviour
         if (!_fireCoolDown.GetCD())
         {
             Debug.Log("Fire");
+            _firePoint.Shot();
             StartCoroutine(_fireCoolDown.FireCD());
         }
     }

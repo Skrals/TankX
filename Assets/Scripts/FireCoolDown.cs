@@ -3,25 +3,25 @@ using UnityEngine;
 
 public class FireCoolDown : MonoBehaviour
 {
-    [SerializeField] private bool _CD;
+    [SerializeField] private bool _cd;
 
     private void Start()
     {
-        _CD = false;
+        _cd = false;
     }
 
     public bool GetCD()
     {
-        return _CD;
+        return _cd;
     }
 
     public IEnumerator FireCD()
     {
         Debug.Log("Fire on CD");
-        _CD = true;
+        _cd = true;
 
         yield return new WaitForSeconds(1f);
-        _CD = false;
+        _cd = false;
 
         Debug.Log("Fire CD is down");
 
