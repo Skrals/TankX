@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 1533934089}
   - component: {fileID: 2106762783471797193}
   - component: {fileID: 1967236648804972481}
+  - component: {fileID: 1099604141612941505}
   m_Layer: 0
   m_Name: EnemyTank
   m_TagString: Untagged
@@ -319,9 +320,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 500
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -352,6 +353,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3403f4655015df640b48374f6e31fe6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 0
+  _maxHealth: 100
+--- !u!114 &1099604141612941505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4295343743311999356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 900eb9ab88291e34f840f5f54c2e7b17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerTank: {fileID: 0}
+  _speed: 1
+  _rotationSpeed: 0
+  _minRoamDistance: -10
+  _maxRoamDistance: 10
+  _newPosition: {x: 0, y: 0}
+  _roamDistance: 0
+  _timeBetweenActions: 3
+  _debugPoint: {fileID: 700895241573702366, guid: ae83e39781541e44eab5bae01b0366a9, type: 3}
 --- !u!1 &4295343743417965753
 GameObject:
   m_ObjectHideFlags: 0

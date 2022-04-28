@@ -17,7 +17,6 @@ public class FirePoint : MonoBehaviour
 
         projectileRigitbody.AddForce(Vector2.MoveTowards(startPos, endPos, 50) * _projectileTemplate.GetProjectileSpeed() *Time.deltaTime, ForceMode2D.Impulse);
 
-       // projectileRigitbody.AddForce(Vector2.up * _projectileTemplate.GetProjectileSpeed(),ForceMode2D.Impulse);//ToDo выстрел в любую сторону
     }
 
 }
