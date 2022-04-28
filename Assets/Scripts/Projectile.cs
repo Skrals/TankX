@@ -1,9 +1,15 @@
 using UnityEngine;
+using System.Collections;
 
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _damage;
     [SerializeField] private float _speed;
+
+    private void Start()
+    {
+        StartCoroutine(DestroySelf());
+    }
 
     private void Update()
     {
@@ -23,4 +29,12 @@ public class Projectile : MonoBehaviour
     {
         return _speed;
     }
+
+    private IEnumerator DestroySelf()
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
+    }
+
+    
 }
