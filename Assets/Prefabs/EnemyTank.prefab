@@ -369,9 +369,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerTank: {fileID: 0}
   _speed: 1
-  _rotationSpeed: 0
-  _minRoamDistance: -10
-  _maxRoamDistance: 10
+  _rotationSpeed: 0.03
+  _minRoamDistance: -20
+  _maxRoamDistance: 20
   _newPosition: {x: 0, y: 0}
   _roamDistance: 0
   _timeBetweenActions: 3

@@ -26,7 +26,7 @@ public class EnemyAi : MonoBehaviour
     void Start()
     {
         _playerTank = FindObjectOfType<PlayerTank>();
-        StartCoroutine(Actions());
+        StartCoroutine(PatrolCD());
     }
 
     private void Update()
@@ -44,7 +44,7 @@ public class EnemyAi : MonoBehaviour
 
         Instantiate(_debugPoint.gameObject, _newPosition, Quaternion.identity);
 
-        StopCoroutine(Actions());
+        StopCoroutine(PatrolCD());
 
         _newPointReady = false;
     }
@@ -63,7 +63,7 @@ public class EnemyAi : MonoBehaviour
             if (!_newPointReady)
             {
                 _newPointReady = true;
-                StartCoroutine(Actions());
+                StartCoroutine(PatrolCD());
             }
         }
     }
@@ -84,7 +84,7 @@ public class EnemyAi : MonoBehaviour
 
     }
 
-    private IEnumerator Actions()
+    private IEnumerator PatrolCD()
     {
         yield return new WaitForSeconds(_timeBetweenActions);
         NewPatrolPoint();
