@@ -19,6 +19,8 @@ public class EnemyAi : MonoBehaviour
     [Header("Passive actions cooldown")]
     [SerializeField] private float _timeBetweenActions;
 
+    [SerializeField] private FirePoint _firePoint;
+
     [SerializeField] DebugPoint _debugPoint;
 
     private bool _newPointReady = false;
@@ -26,6 +28,7 @@ public class EnemyAi : MonoBehaviour
     void Start()
     {
         _playerTank = FindObjectOfType<PlayerTank>();
+        _firePoint = GetComponentInChildren<FirePoint>();
         StartCoroutine(PatrolCD());
     }
 
@@ -81,7 +84,7 @@ public class EnemyAi : MonoBehaviour
 
     private void Attack()
     {
-
+        _firePoint.Shot();
     }
 
     private IEnumerator PatrolCD()
