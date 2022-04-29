@@ -16,9 +16,9 @@ public class EnemyAi : MonoBehaviour
     [SerializeField] private Vector2 _newPosition;
     [SerializeField] private float _roamDistance;
 
-    [Header("Passive actions cooldown")]
     [SerializeField] private float _timeBetweenActions;
 
+    [Header("")]
     [SerializeField] private FirePoint _firePoint;
 
     [SerializeField] DebugPoint _debugPoint;
