@@ -5,6 +5,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _damage;
     [SerializeField] private float _speed;
+    private float _destroyTime = 3f;
 
     private void Start()
     {
@@ -36,7 +37,7 @@ public class Projectile : MonoBehaviour
 
     private IEnumerator DestroySelf()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(_destroyTime);
         Destroy(gameObject);
     }
 
