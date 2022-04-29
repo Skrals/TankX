@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -21,6 +21,10 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out HealthContainer healthContainer))
         {
             healthContainer.TakeDamage(_damage);
+            Destroy(gameObject);
+        }
+        else if (collision.gameObject.TryGetComponent(out Border border))
+        {
             Destroy(gameObject);
         }
     }
@@ -36,5 +40,5 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
-    
+
 }
