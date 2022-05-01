@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-
 public class TankControl : MonoBehaviour
 {
     [SerializeField] private DynamicJoystick _dynamicJoystick;

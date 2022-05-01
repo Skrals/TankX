@@ -18,6 +18,16 @@ public class EnemyAi : MonoBehaviour
 
     [SerializeField] private float _timeBetweenActions;
 
+    [Header("Player searching attributes")]
+    [SerializeField] private float _searchingDistance;
+    [SerializeField] private float _maxChasingDistance;
+    [SerializeField] private float _stopDistance;
+    [SerializeField] private bool _stopPlayerChasing = false;
+
+    [Header("Attack attributes")]
+    [SerializeField] private FireCoolDown _coolDown;
+    [SerializeField] private bool _hasTarget = false;
+
     [Header("")]
     [SerializeField] private FirePoint _firePoint;
 
@@ -29,12 +39,24 @@ public class EnemyAi : MonoBehaviour
     {
         _playerTank = FindObjectOfType<PlayerTank>();
         _firePoint = GetComponentInChildren<FirePoint>();
+        _coolDown = GetComponent<FireCoolDown>();
         StartCoroutine(PatrolCD());
     }
 
     private void Update()
     {
+        if(_playerTank == null)
+        {
+            return;
+        }
+
         Move();
+        Search();
+
+        if(_hasTarget)
+        {
+            Attack();
+        }
     }
 
 
@@ -56,9 +78,12 @@ public class EnemyAi : MonoBehaviour
     {
         _roamDistance = Vector2.Distance(_newPosition, transform.position);
 
-        if(_roamDistance>=1)
+        if (_roamDistance >= 1)
         {
-            transform.position += ((Vector3)_newPosition - transform.position).normalized * _speed * Time.deltaTime;
+            if (!_stopPlayerChasing)
+            {
+                transform.position += ((Vector3)_newPosition - transform.position).normalized * _speed * Time.deltaTime;
+            }
             Rotation();
         }
         else
@@ -71,7 +96,7 @@ public class EnemyAi : MonoBehaviour
         }
     }
 
-    private void Rotation ()
+    private void Rotation()
     {
         var angle = Vector2.Angle(Vector2.up, (Vector3)_newPosition - transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0f, 0f, transform.position.x > _newPosition.x ? angle : -angle), _rotationSpeed);
@@ -79,12 +104,43 @@ public class EnemyAi : MonoBehaviour
 
     private void Search()
     {
-
+        var distanceToPlayer = Vector2.Distance(transform.position, _playerTank.transform.position);
+        if (distanceToPlayer <= _searchingDistance)
+        {
+            _newPosition = _playerTank.transform.position;
+            _hasTarget = true;
+        }
     }
 
     private void Attack()
     {
-        _firePoint.Shot();
+        AttackMovement();
+
+        if (!_coolDown.GetCD())
+        {
+            _firePoint.Shot();
+            StartCoroutine(_coolDown.FireCD());
+        }
+    }
+
+    private void AttackMovement()
+    {
+        var playerTank = _playerTank.transform.position;
+
+        if (Vector2.Distance(transform.position, playerTank) <= _stopDistance)
+        {
+            _stopPlayerChasing = true;
+        }
+        else
+        {
+            _stopPlayerChasing = false;
+        }
+
+        if (Vector2.Distance(transform.position, playerTank) >= _maxChasingDistance && _hasTarget)
+        {
+            _hasTarget = false;
+            StartCoroutine(PatrolCD());
+        }
     }
 
     private IEnumerator PatrolCD()

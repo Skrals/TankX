@@ -446,13 +446,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerTank: {fileID: 0}
-  _speed: 1
-  _rotationSpeed: 0.03
+  _speed: 0.8
+  _rotationSpeed: 0.02
   _minRoamDistance: -20
   _maxRoamDistance: 20
   _newPosition: {x: 0, y: 0}
   _roamDistance: 0
   _timeBetweenActions: 3
+  _searchingDistance: 8
+  _maxChasingDistance: 12
+  _stopDistance: 5
+  _stopPlayerChasing: 0
+  _coolDown: {fileID: 0}
+  _hasTarget: 0
   _firePoint: {fileID: 0}
   _debugPoint: {fileID: 700895241573702366, guid: ae83e39781541e44eab5bae01b0366a9, type: 3}
 --- !u!114 &6811699022910188781
@@ -468,7 +474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cd: 0
-  _time: 2
+  _time: 5
 --- !u!1 &4295343743417965753
 GameObject:
   m_ObjectHideFlags: 0

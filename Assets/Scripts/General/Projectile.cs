@@ -7,15 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float _speed;
     private float _destroyTime = 5f;
 
-    private void Start()
-    {
-        StartCoroutine(DestroySelf());
-    }
-
-    private void Update()
-    {
-
-    }
+    private void Start() => StartCoroutine(DestroySelf());
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -30,7 +22,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public float GetProjectileSpeed()
+    public float GetProjectileSpeed() 
     {
         return _speed;
     }
