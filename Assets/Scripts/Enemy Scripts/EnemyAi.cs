@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class EnemyAi : MonoBehaviour
 {
+    //TODO разделить скрипт 
+
     [Header("Player target")]
     [SerializeField] private PlayerTank _playerTank;
 
@@ -74,7 +76,7 @@ public class EnemyAi : MonoBehaviour
 
         _newPosition = new Vector2(newX, newY);
 
-        Instantiate(_debugPoint.gameObject, _newPosition, Quaternion.identity);
+        //Instantiate(_debugPoint.gameObject, _newPosition, Quaternion.identity);
 
         StopCoroutine(PatrolCD());
 
