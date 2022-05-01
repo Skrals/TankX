@@ -5,6 +5,7 @@ public class EnemyAi : MonoBehaviour
 {
     [Header("Player target")]
     [SerializeField] private PlayerTank _playerTank;
+
     [Header("Enemy move speed")]
     [SerializeField] private float _speed;
     [SerializeField] private float _rotationSpeed;
@@ -12,10 +13,8 @@ public class EnemyAi : MonoBehaviour
     [Header("Roaming patrol attributes")]
     [SerializeField] private float _minRoamDistance;
     [SerializeField] private float _maxRoamDistance;
-
     [SerializeField] private Vector2 _newPosition;
     [SerializeField] private float _roamDistance;
-
     [SerializeField] private float _timeBetweenActions;
 
     [Header("Player searching attributes")]
@@ -30,10 +29,16 @@ public class EnemyAi : MonoBehaviour
 
     [Header("")]
     [SerializeField] private FirePoint _firePoint;
+    [SerializeField] private HealthContainer _healthContainer;
 
     [SerializeField] DebugPoint _debugPoint;
 
     private bool _newPointReady = false;
+    private Vector3 _player;
+
+    private void Awake() => _healthContainer = GetComponent<HealthContainer>();
+    private void OnEnable() => _healthContainer.OnHealthChanged += OnDamageReceived;
+    private void OnDisable() => _healthContainer.OnHealthChanged -= OnDamageReceived;
 
     void Start()
     {
@@ -43,12 +48,15 @@ public class EnemyAi : MonoBehaviour
         StartCoroutine(PatrolCD());
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+
         if(_playerTank == null)
         {
             return;
         }
+
+        _player = _playerTank.transform.position;
 
         Move();
         Search();
@@ -104,12 +112,17 @@ public class EnemyAi : MonoBehaviour
 
     private void Search()
     {
-        var distanceToPlayer = Vector2.Distance(transform.position, _playerTank.transform.position);
+        var distanceToPlayer = Vector2.Distance(transform.position, _player);
         if (distanceToPlayer <= _searchingDistance)
         {
-            _newPosition = _playerTank.transform.position;
-            _hasTarget = true;
+            AttackOn();
         }
+    }
+
+    private void AttackOn()
+    {
+        _newPosition = _player;
+        _hasTarget = true;
     }
 
     private void Attack()
@@ -125,9 +138,7 @@ public class EnemyAi : MonoBehaviour
 
     private void AttackMovement()
     {
-        var playerTank = _playerTank.transform.position;
-
-        if (Vector2.Distance(transform.position, playerTank) <= _stopDistance)
+        if (Vector2.Distance(transform.position, _player) <= _stopDistance)
         {
             _stopPlayerChasing = true;
         }
@@ -136,11 +147,17 @@ public class EnemyAi : MonoBehaviour
             _stopPlayerChasing = false;
         }
 
-        if (Vector2.Distance(transform.position, playerTank) >= _maxChasingDistance && _hasTarget)
+        if (Vector2.Distance(transform.position, _player) >= _maxChasingDistance && _hasTarget)
         {
             _hasTarget = false;
             StartCoroutine(PatrolCD());
         }
+    }
+
+    private void OnDamageReceived(float hp)
+    {
+        AttackOn();
+        StopCoroutine(PatrolCD());
     }
 
     private IEnumerator PatrolCD()
