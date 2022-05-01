@@ -1,16 +1,8 @@
 using UnityEngine;
 
-public class PlayerTank : MonoBehaviour
+public class PlayerTank : Tank
 {
-    [SerializeField] private HealthContainer _healthContainer;
-
-    private void Awake() => _healthContainer = GetComponent<HealthContainer>();
-
-    private void OnEnable() => _healthContainer.OnHealthChanged += OnHealthUpdate;
-
-    private void OnDisable() => _healthContainer.OnHealthChanged -= OnHealthUpdate;
-
-    private void OnHealthUpdate(float hp)
+    protected override void OnHealthUpdate(float hp)
     {
         if(hp <= 0)
         {
