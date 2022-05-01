@@ -4,6 +4,7 @@ using UnityEngine;
 public class FireCoolDown : MonoBehaviour
 {
     [SerializeField] private bool _cd;
+    [SerializeField] private float _time;
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class FireCoolDown : MonoBehaviour
         Debug.Log("Fire on CD");
         _cd = true;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(_time);
         _cd = false;
 
         Debug.Log("Fire CD is down");

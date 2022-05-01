@@ -5,7 +5,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _damage;
     [SerializeField] private float _speed;
-    private float _destroyTime = 3f;
+    private float _destroyTime = 5f;
 
     private void Start()
     {

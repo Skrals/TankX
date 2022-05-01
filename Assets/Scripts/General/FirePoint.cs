@@ -15,7 +15,7 @@ public class FirePoint : MonoBehaviour
         Vector2 startPos = _projectileTemplate.transform.position;
         Vector2 endPos = _lookPoint.transform.position;
 
-        projectileRigitbody.AddForce(Vector2.MoveTowards(startPos, endPos, 50) * _projectileTemplate.GetProjectileSpeed() *Time.deltaTime, ForceMode2D.Impulse);
+        projectileRigitbody.AddForce(Vector2.MoveTowards(startPos, endPos, 50) * _projectileTemplate.GetProjectileSpeed() *Time.fixedDeltaTime, ForceMode2D.Impulse);
 
     }
 

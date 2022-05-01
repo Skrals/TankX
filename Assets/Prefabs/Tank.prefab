@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2669942838146670094}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.16, z: 0}
+  m_LocalPosition: {x: 0, y: 85.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9208475673793246224}
@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _projectileTemplate: {fileID: 5210514216898723578, guid: 004aec4c72804a243b655c828bcb3cb0, type: 3}
+  _lookPoint: {fileID: 2669942838146670094}
 --- !u!1 &9208475673793246227
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cd: 0
+  _time: 2
 --- !u!114 &9208475673793246231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,7 +436,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!1 &9208475673831971286
 GameObject:
   m_ObjectHideFlags: 0
