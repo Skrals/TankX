@@ -67,7 +67,6 @@ public class EnemyAi : MonoBehaviour
         }
     }
 
-
     private void NewPatrolPoint()
     {
         float newX = Random.Range(_minRoamDistance, _maxRoamDistance);
