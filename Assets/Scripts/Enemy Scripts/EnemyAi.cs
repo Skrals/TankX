@@ -95,11 +95,24 @@ public class EnemyAi : MonoBehaviour
         }
         else
         {
-            if (!_newPointReady)
-            {
-                _newPointReady = true;
-                StartCoroutine(PatrolCD());
-            }
+           ChangePatrolPoint();
+        }
+    }
+
+    private void ChangePatrolPoint()
+    {
+        if (!_newPointReady)
+        {
+            _newPointReady = true;
+            StartCoroutine(PatrolCD());
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(!_hasTarget && (collision.gameObject.TryGetComponent(out Wall wall) || collision.gameObject.TryGetComponent(out EnemyTank tank)))
+        {
+            ChangePatrolPoint();
         }
     }
 
@@ -120,6 +133,7 @@ public class EnemyAi : MonoBehaviour
 
     private void AttackOn()
     {
+        StopCoroutine(PatrolCD());
         _newPosition = _player;
         _hasTarget = true;
     }
@@ -156,7 +170,6 @@ public class EnemyAi : MonoBehaviour
     private void OnDamageReceived(float hp)
     {
         AttackOn();
-        StopCoroutine(PatrolCD());
     }
 
     private IEnumerator PatrolCD()
