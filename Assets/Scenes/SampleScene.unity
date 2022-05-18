@@ -1486,11 +1486,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9208475673793246224, guid: 5d9ffc1f39b7f4446aa716d21385e7bb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.23
+      value: 2.53
       objectReference: {fileID: 0}
     - target: {fileID: 9208475673793246224, guid: 5d9ffc1f39b7f4446aa716d21385e7bb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.71
+      value: -4.54
       objectReference: {fileID: 0}
     - target: {fileID: 9208475673793246224, guid: 5d9ffc1f39b7f4446aa716d21385e7bb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1604,7 +1604,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1381028460}
-  - component: {fileID: 1381028459}
   - component: {fileID: 1381028458}
   m_Layer: 0
   m_Name: Spawner
@@ -1628,19 +1627,6 @@ MonoBehaviour:
   _spawnPosition: {x: -25, y: 25}
   _enemyTankTemplate: {fileID: 2106762783471797193, guid: 31e65cff91e227543b85445eb3bc7c8c, type: 3}
   _enemyAmont: 5
---- !u!114 &1381028459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381028457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12ce9674d606a1a4bb4cfb2858a0bb39, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawnPosition: {x: 0, y: 0}
 --- !u!4 &1381028460
 Transform:
   m_ObjectHideFlags: 0

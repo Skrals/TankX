@@ -420,6 +420,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd11eb113cf92f444ac9e7713646a64d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthContainer: {fileID: 0}
+  _winCondition: {fileID: 0}
 --- !u!114 &1967236648804972481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,7 +453,7 @@ MonoBehaviour:
   _rotationSpeed: 0.02
   _minRoamDistance: -20
   _maxRoamDistance: 20
-  _newPosition: {x: 0, y: 0}
+  _newTargetPosition: {x: 0, y: 0}
   _roamDistance: 0
   _timeBetweenActions: 3
   _searchingDistance: 8
@@ -462,7 +464,6 @@ MonoBehaviour:
   _hasTarget: 0
   _firePoint: {fileID: 0}
   _healthContainer: {fileID: 0}
-  _debugPoint: {fileID: 700895241573702366, guid: ae83e39781541e44eab5bae01b0366a9, type: 3}
 --- !u!114 &6811699022910188781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -475,8 +476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040d093cc1b1e1742a6ab28187173294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cd: 0
-  _time: 5
+  _cdFlag: 0
+  _cdTime: 5
 --- !u!61 &408980951
 BoxCollider2D:
   m_ObjectHideFlags: 0
